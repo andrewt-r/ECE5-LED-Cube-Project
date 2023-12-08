@@ -7,6 +7,27 @@ void setup() {
   cube.begin();
 }
 
+void rain(int num){ //number of rain drops
+  int drops[num][3]; // (x, y)
+  for(int i = 0; i < num;i++){
+      drops[i][0] = (int) random(0,4); // x
+      drops[i][1] = (int) random(0,4); // y
+      drops[i][2] = (int) random(0,4); // z
+  }
+
+  while(true){
+    for(int i = 0; i < num; i++ ){
+      activateLED(drops[i][0], drops[i][1], drops[i][2]) 
+      drops[i][2]--;
+      if(drops[i][2] < 0){ // check if the rain drop has a negative position
+        drops[i][0] = (int) random(0,4); 
+        drops[i][1] = (int) random(0,4); 
+        drops[i][2] = 3; //goes back to top
+      }
+    }
+  }
+}
+
 void loop() {
   for (int l = 0; l < 4; l++) {
     for (int y = 0; y < 4; y++) {
